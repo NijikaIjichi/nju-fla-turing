@@ -1,0 +1,1 @@
+./turing -v ./programs/case1.tm 11101001

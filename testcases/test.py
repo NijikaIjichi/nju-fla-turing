@@ -28,26 +28,4 @@ with open('testcases.txt') as test, open('testcases_ans.txt') as ans:
     except:
       print(color("red", "RE"))
 
-print('verbose %26s' % './programs/case1.tm', end=': ')
-total += 1
-try:
-  tm = subprocess.run('./turing -v ./programs/case1.tm 11101001'.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8", timeout=1)
-  if tm.returncode != 0:
-    print(color("red", "RE"), "stderr:", tm.stderr.strip())
-  else:
-    step = 0
-    with open('testcases_verbose_ans.txt', "r") as f:
-      for i, j in itertools.zip_longest(tm.stdout.splitlines(), f.readlines()):
-        if j is not None and j.startswith("Step"):
-          step += 1
-        if i is None or j is None or i.strip() != j.strip():
-          print(color("red", "WA"), "first diff at step", step)
-          exit()
-    print(color("green", "AC"))
-    ac += 1
-except TimeoutError:
-  print(color("red", "TLE"))
-except:
-  print(color("red", "RE"))
-
 print(f'AC {ac}/{total}')

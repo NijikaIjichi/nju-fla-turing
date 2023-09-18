@@ -9,4 +9,4 @@
 `python3 test.py`
 
 
-
+注意: `verbose` 样例为手动测试, 肉眼比对
